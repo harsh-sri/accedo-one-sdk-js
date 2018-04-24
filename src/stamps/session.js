@@ -18,9 +18,11 @@ const stamp = stampit({
         return creatingSessionPromise;
       }
 
-      // ignore any existing session
+      // if session exists then return the existing session
       if (instance.config.sessionKey) {
-        instance.config.sessionKey = null;
+        return new Promise(function(resolve, reject) {
+            resolve(instance.config.sessionKey);
+        });
       }
 
       // launch a request, update the promise
